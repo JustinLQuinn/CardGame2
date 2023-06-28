@@ -37,6 +37,7 @@ body{
     row-gap: 10px;
     margin: 50px;
     justify-content: center;
+    perspective: 500px;
 }
 
 .card{
@@ -48,6 +49,8 @@ body{
     position: relative;
 }
 
+
+
 .card-face{
     position: absolute;
     width: 100%;
@@ -55,6 +58,29 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.card.visible .card-back{
+    transform: rotateY(-180deg);
+}
+    
+.card.visible .card-front{
+    transform: rotateY(0);
+}
+
+.card-back{
+    background-color: black;
+    border-color: #ff6d00;
+}
+
+.card-front{
+    background-color: bisque;
+    border-color: #ff6d00;
+    transform: rotateY(180deg);
 }
 
 .back-image{
@@ -64,7 +90,37 @@ body{
     border-radius: 5%;
 }
 
-.overlay.text{
+.card-value{
+    position: absolute;
+    width: 47px;
+    height: 47px;
+}
+
+.card-value-top-right{
+top: 0;
+right: 0;
+}
+
+.card-value-top-left{
+    top: 0;
+    left: 0;
+}
+
+.card-value-bottom-left{
+    bottom: 0;
+    left: 0;
+}
+
+.card-value-bottom-right{
+    bottom: 0;
+    right: 0;
+}
+
+.suit{
+    align-self: center;
+}
+
+.overlay-text{
 display: none;
 position: fixed;
 top: 0;
