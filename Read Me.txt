@@ -1,0 +1,42 @@
+Memeory Card Game
+
+ArrayList<Cards> card(50)
+Internal memory of cards to be used.
+
+Card info: 
+Value: (1-13)
+Suit: (Heart, Diamond, Spade, Club)
+
+Player class:
+Name: char (12)
+
+Game Stats: extends Player
+Time: timer while playing a game. Timer stops when game is ended.
+Sets: Number of sets collected
+***Score field  int (20). TBD***
+Cards selected: Array of cards being used in game
+Cards used: Array of cards found in previous games
+Options will have a choice for different design patterns for the backs of the cards. 3 patterns to start with, more will come later. 
+
+Game play: 
+  3 rows of 4 flip-cards (12)
+  Back side (pic) card design pattern
+  Face side (pic) card value & type
+  Timer will run keeping total time of game.
+  Start Game will be first screen. With an options icon to change the cards back pattern.
+  When start game is pressed the cards are setup and the timer will start. 
+  Only 2 cards can be chosen at a time. 
+  If the two chosen cards match, the chosen cards will disappear showing an empty space. 
+  A value of 1 will be assigned and added to the Sets value with each match selected.
+
+Choose cards:
+  An Array list of 50 cards will be stored in the internal memory or the game. 
+  At beginning of game the value for Cards selected and Cards used will be an empty Array. 
+  6 cards are chosen from the internal memory list to be used in game. 
+  Each card selected is saved into Cards Selected, and will create an exact pair in the game.
+  Next the Cards are shuffled. 
+  Each pair found while playing game is saved into Cards used.
+  If a set is not found in a game, that value will not be saved to Cards used. 
+  After set is played, Cards selected is set to empty. Cards used is saved for next game. 
+  After each game Cards used will be checked if 48 cards are in the array. When 48 cards are in the Cards used Array, game is reset to original settings. 
+  Game begins again.
