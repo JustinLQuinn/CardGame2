@@ -48,12 +48,13 @@ class MixOrMatch{
         this.busy = true;
     }
 
-    setTimeOut(() => {
+    timeOut(){setTimeout(function (){
         this.AudioController.startMusic();
         this.shuffleCards();
         this.countDown = this.startCountDown();
         this.busy = false;
-    }, 500){
+    }, 500);
+    
         this.hideCards();
         this.timer.innerText = this.timeRemaining;
         this.ticker.innerText = this.totalClicks;
