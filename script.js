@@ -46,15 +46,12 @@ class MixOrMatch{
         this.timeRemaining = this.totalTime;
         this.matchedCards = [];
         this.busy = true;
-    }
-
-    timeOut(){setTimeout(function (){
-        this.AudioController.startMusic();
-        this.shuffleCards();
-        this.countDown = this.startCountDown();
-        this.busy = false;
-    }, 500);
-    
+        setTimeout(function (){
+            this.AudioController.startMusic();
+            this.shuffleCards();
+            this.countDown = this.startCountDown();
+            this.busy = false;
+        }, 500);    
         this.hideCards();
         this.timer.innerText = this.timeRemaining;
         this.ticker.innerText = this.totalClicks;
@@ -98,9 +95,6 @@ class MixOrMatch{
         this.audioController.match();
         if(this.matchedCards.length === this.cardsArray.length)
         this.victory();
-        //change Set number
-        //document.getElementById('sets').innerText++;
-        //this.sets++;
     }
 
     cardMisMatch(card1, card2){
