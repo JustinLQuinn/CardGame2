@@ -30,7 +30,7 @@ Game play:
   A value of 1 will be assigned and added to the Sets value with each match selected.
 
 Choose cards:
-  An Array list of 50 cards will be stored in the internal memory or the game. 
+  An Array list of 52 cards will be stored in the internal memory or the game. 
   At beginning of game the value for Cards selected and Cards used will be an empty Array. 
   6 cards are chosen from the internal memory list to be used in game. 
   Each card selected is saved into Cards Selected, and will create an exact pair in the game.
