@@ -153,6 +153,7 @@ if(document.readyState === 'loading'){
 function ready(){
     let overlays = Array.from(document.getElementsByClassName('overlay-text'));
     let cards = Array.from(document.getElementsByClassName('card'));
+    let playingCards;
     let game = new MixOrMatch(100, cards);
 
     overlays.forEach(overlay =>{
@@ -166,4 +167,12 @@ function ready(){
             game.flipCard(card);
         });
     });
+}
+
+function createCardList(){
+    let playingCards = [];
+    fetch('./cards/playing_cards/cards.json')
+    .then((response) => response.json())
+    .then((json) => json.playingCards.forEach(pcard => {playingCards.push(pcard);}
+    ));
 }
