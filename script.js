@@ -48,7 +48,7 @@ class MixOrMatch{
         this.busy = true;
         setTimeout(() => {
             // this.AudioController.startMusic();
-            // this.shuffleCards();
+            this.shuffleCards();
             this.countDown = this.startCountDown();
             this.busy = false;
         }, 500)    
@@ -131,17 +131,17 @@ class MixOrMatch{
         document.getElementById('victory-text').classList.add('visible');
     }
 
-    // shuffleCards(){ // Fisher-Yates Shuffle Algorithm.
-    //     for(let i = this.cardsArray.length - 1; i > 0; i--){
-    //         let randIndex = Math.floor(Math.random()*(i+1));
-    //         this.cardsArray[randIndex].style.order = i;
-    //         this.cardsArray[i].style.order = randIndex;
-    //     }
-    // }
+    shuffleCards(){ // Fisher-Yates Shuffle Algorithm.
+        for(let i = this.cardsArray.length - 1; i > 0; i--){
+            let randIndex = Math.floor(Math.random()*(i+1));
+            this.cardsArray[randIndex].style.order = i;
+            this.cardsArray[i].style.order = randIndex;
+        }
+    }
 
     canFlipCard(card){
         return !this.busy && !this.matchedCards.includes(card) && card !== this.cardToCheck;
-    }
+    }   
 }
 
 if(document.readyState === 'loading'){
@@ -153,7 +153,6 @@ if(document.readyState === 'loading'){
 function ready(){
     let overlays = Array.from(document.getElementsByClassName('overlay-text'));
     let cards = Array.from(document.getElementsByClassName('card'));
-    let playingCards;
     let game = new MixOrMatch(100, cards);
 
     overlays.forEach(overlay =>{
@@ -173,6 +172,7 @@ function createCardList(){
     let playingCards = [];
     fetch('./cards/playing_cards/cards.json')
     .then((response) => response.json())
-    .then((json) => json.playingCards.forEach(pcard => {playingCards.push(pcard);}
-    ));
+    .then((json) => json.playingCards.forEach(pcard => {playingCards.push(pcard)}
+    ))
+    return playingCards;
 }
