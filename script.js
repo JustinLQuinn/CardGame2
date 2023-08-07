@@ -205,39 +205,46 @@ function ready(){
     {"id":50,"value":"J","suit":"Spade","color":"black"},
     {"id":51,"value":"Q","suit":"Spade","color":"black"},
     {"id":52,"value":"K","suit":"Spade","color":"black"}];
-    console.log(deckOfCards);
     let game = new MixOrMatch(100, cards);
     // console.log(cards);
     () => {
         let combinedCards = [];
-        let i = random.randint(0,51);
         cards.forEach(card => {
-            if(combinedCards.isEmpty() || combinedCards.length === 0){
-        combinedCards.push({"htmlCard": card.id,"cardLiteral":[deckOfCards[i]]});
-            }else if(combinedCards.length>0){
-                let newRelatioin = {"htmlCard": card.id,"cardLiteral":[deckOfCards[i]]};
-                for(j=0;j<combinedCards.length;j++){
-                    if(combinedCards[j].htmlCard === newRelatioin.htmlCard && combinedCards[j].cardLiteral[0].id === newRelatioin.cardLiteral[0].id){
-                        continue;
-                    }else
-                        combinedCards.push(newRelatioin);
-                    }
-            }                
+            if(card.id === "card7" || card.id === "card8" || card.id === "card9" || card.id === "card10" || card.id === "card11" || card.id === "card12"){
+                let newRelatioin = {"htmlCard": card.id,"cardLiteral":[]};
+                for(b=0;b <= 5;b++){
+                    newRelatioin.cardLiteral.push(combinedCards[b].cardLiteral[0]);
+                    combinedCards.push(newRelatioin);
+                }
+            }else
+                var i = random.randint(0,51);
+                if(combinedCards.isEmpty() || combinedCards.length === 0){
+                    combinedCards.push({"htmlCard": card.id,"cardLiteral":[deckOfCards[i]]});
+                }else if(combinedCards.length>0){
+                    let newRelatioin = {"htmlCard": card.id,"cardLiteral":[deckOfCards[i]]};
+                    for(j=0;j<combinedCards.length;j++){
+                        if(combinedCards[j].htmlCard === newRelatioin.htmlCard && combinedCards[j].cardLiteral[0].id === newRelatioin.cardLiteral[0].id){
+                            continue;
+                        }else
+                            combinedCards.push(newRelatioin);
+                        }
+                }
         });
+        console.log(combinedCards);
         combinedCards.forEach(relation => {
             let valueHTML = document.getElementById(relation.htmlCard).getElementsByClassName('card-value');
             valueHTML.forEach(value => {value.innerText = relation.cardLiteral[0].value});
             let suitHTML = document.getElementById(relation.htmlCard).getElementsByClassName('card-suit')[0];
             suitHTML.alt = relation.cardLiteral[0].suit;
-            // if(suitHTML.alt === "Spade"){
+            if(suitHTML.alt === "Spade"){
             //     suitHTML.src = ".cards/rear_image/Spade.jpg";
-            // }else if(suitHTML.alt === "Diamond"){
+            }else if(suitHTML.alt === "Diamond"){
             //     suitHTML.src = ".cards/rear_image/Diamond.jpg";
-            // }else if(suitHTML.alt === "Club"){
+            }else if(suitHTML.alt === "Club"){
             //     suitHTML.src = ".cards/rear_image/Club.jpg";
-            // }else{
+            }else{
             //     suitHTML.src = ".cards/rear_image/Heart.jpg";
-            // }
+            }
         });
     }
 
