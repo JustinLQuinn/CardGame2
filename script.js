@@ -220,15 +220,13 @@ function ready(){
             }else{
             let i = Math.floor(Math.random()*52);
             let newRelation = {"htmlCard": card.id,"cardLiteral":[deckOfCards[i]]};
-                if(combinedCards.includes(deckOfCards[i])){
+                while(combinedCards.includes(deckOfCards[i])){
                     newRelation.cardLiteral = Math.floor(Math.random()*52);
-                    combinedCards.push(newRelation);
-                }else{
-                    combinedCards.push(newRelation);
                 }
+                    combinedCards.push(newRelation);
             }
         });
-        //  console.log(combinedCards);
+         // console.log(combinedCards);
         combinedCards.forEach(relation => {
             let valueHTML = Array.from(document.getElementById(relation.htmlCard).getElementsByClassName('card-value'));
             valueHTML.forEach(value => {value.innerText = relation.cardLiteral[0].value});
@@ -245,7 +243,6 @@ function ready(){
             }
         });
     
-
     overlays.forEach(overlay =>{
         overlay.addEventListener('click',() =>{
             overlay.classList.remove('visible');
