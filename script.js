@@ -207,32 +207,30 @@ function ready(){
     {"id":52,"value":"K","suit":"Spade","color":"black"}];
     let game = new MixOrMatch(100, cards);
     // console.log(cards);
-    () => {
+
         let combinedCards = [];
+        let b = 0;
         cards.forEach(card => {
+            // console.log(card.id);
             if(card.id === "card7" || card.id === "card8" || card.id === "card9" || card.id === "card10" || card.id === "card11" || card.id === "card12"){
-                let newRelatioin = {"htmlCard": card.id,"cardLiteral":[]};
-                for(b=0;b <= 5;b++){
-                    newRelatioin.cardLiteral.push(combinedCards[b].cardLiteral[0]);
-                    combinedCards.push(newRelatioin);
+                let newRelation = {"htmlCard": card.id,"cardLiteral":[]};
+                newRelation.cardLiteral.push(combinedCards[b].cardLiteral[0]);
+                combinedCards.push(newRelation);
+                b++;
+            }else{
+            let i = Math.floor(Math.random()*52);
+            let newRelation = {"htmlCard": card.id,"cardLiteral":[deckOfCards[i]]};
+                if(combinedCards.includes(deckOfCards[i])){
+                    newRelation.cardLiteral = Math.floor(Math.random()*52);
+                    combinedCards.push(newRelation);
+                }else{
+                    combinedCards.push(newRelation);
                 }
-            }else
-                var i = random.randint(0,51);
-                if(combinedCards.isEmpty() || combinedCards.length === 0){
-                    combinedCards.push({"htmlCard": card.id,"cardLiteral":[deckOfCards[i]]});
-                }else if(combinedCards.length>0){
-                    let newRelatioin = {"htmlCard": card.id,"cardLiteral":[deckOfCards[i]]};
-                    for(j=0;j<combinedCards.length;j++){
-                        if(combinedCards[j].htmlCard === newRelatioin.htmlCard && combinedCards[j].cardLiteral[0].id === newRelatioin.cardLiteral[0].id){
-                            continue;
-                        }else
-                            combinedCards.push(newRelatioin);
-                        }
-                }
+            }
         });
-        console.log(combinedCards);
+        //  console.log(combinedCards);
         combinedCards.forEach(relation => {
-            let valueHTML = document.getElementById(relation.htmlCard).getElementsByClassName('card-value');
+            let valueHTML = Array.from(document.getElementById(relation.htmlCard).getElementsByClassName('card-value'));
             valueHTML.forEach(value => {value.innerText = relation.cardLiteral[0].value});
             let suitHTML = document.getElementById(relation.htmlCard).getElementsByClassName('card-suit')[0];
             suitHTML.alt = relation.cardLiteral[0].suit;
@@ -246,7 +244,7 @@ function ready(){
             //     suitHTML.src = ".cards/rear_image/Heart.jpg";
             }
         });
-    }
+    
 
     overlays.forEach(overlay =>{
         overlay.addEventListener('click',() =>{
