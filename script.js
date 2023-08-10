@@ -237,7 +237,7 @@ function assignCards(){
                 //console.log(newRelation);
                 combinedCards.push(newRelation);
                 ids.push(newRelation.cardLiteral[0].id);
-                console.log(ids);
+                //console.log(ids);
                 b++;
             }else{
             let i = Math.floor(Math.random()*52);
