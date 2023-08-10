@@ -107,7 +107,7 @@ class MixOrMatch{
     }
 
     getCardType(card){
-        return card.getElementsByClassName('card-value')[0].innerText && card.getElementsByClassName('card-suit')[0].alt;
+        return card.getElementsByClassName('card-value')[0].innerText +","+ card.getElementsByClassName('card-suit')[0].alt;
     }
 
     startCountDown(){
