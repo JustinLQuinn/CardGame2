@@ -225,22 +225,27 @@ function ready(){
             let i = Math.floor(Math.random()*52);
             let newRelation = {"htmlCard": card.id,"cardLiteral":[deckOfCards[i]]};
             let newRelation2 = {"htmlCard": card.id,"cardLiteral":[]};
-                while(ids.every(checkIDS) === false){
+                while(ids.includes(newRelation.cardLiteral[0].id)){
                     let c = Math.floor(Math.random()*52);
+                    console.log(newRelation);
+                    newRelation = 0;
+                    console.log(newRelation);
                     //console.log(newRelation2);
                     newRelation2.cardLiteral.push(deckOfCards[c]);
-                    //console.log(newRelation2);
+                    console.log(newRelation2);
                     newRelation = newRelation2;
-                    //console.log(newRelation);
+                    console.log(newRelation);
+                    //combinedCards.push(newRelation);
+                    //ids.push(newRelation.cardLiteral[0].id);
                 }
                     combinedCards.push(newRelation);
                     ids.push(newRelation.cardLiteral[0].id);
-                    //console.log(ids);
+                    console.log(ids);
                 function checkIDS(id){
                     if(!ids.length){
                         return true;
                     }else{
-                        return (id = deckOfCards[i].id);
+                        return (id.value != deckOfCards[i].id);
                     }
                 }
             }
