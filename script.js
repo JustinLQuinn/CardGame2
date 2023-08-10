@@ -55,6 +55,7 @@ class MixOrMatch{
         this.hideCards();
         this.timer.innerText = this.timeRemaining;
         this.ticker.innerText = this.totalClicks;
+    
     }
 
     hideCards(){
@@ -153,6 +154,25 @@ if(document.readyState === 'loading'){
 function ready(){
     let overlays = Array.from(document.getElementsByClassName('overlay-text'));
     let cards = Array.from(document.getElementsByClassName('card'));
+    let game = new MixOrMatch(100, cards);
+
+    assignCards();
+
+    overlays.forEach(overlay =>{
+        overlay.addEventListener('click',() =>{
+            overlay.classList.remove('visible');
+            game.startGame();
+        });
+    });
+    cards.forEach(card =>{
+        card.addEventListener('click',()=>{
+            game.flipCard(card);
+        });
+    });
+
+}
+function assignCards(){
+    let cards = Array.from(document.getElementsByClassName('card'));
     let deckOfCards = [{"id":1,"value":"A","suit":"Heart","color":"red"},
     {"id":2,"value":"2","suit":"Heart","color":"red"},
     {"id":3,"value":"3","suit":"Heart","color":"red"},
@@ -205,49 +225,37 @@ function ready(){
     {"id":50,"value":"J","suit":"Spade","color":"black"},
     {"id":51,"value":"Q","suit":"Spade","color":"black"},
     {"id":52,"value":"K","suit":"Spade","color":"black"}];
-    let game = new MixOrMatch(100, cards);
-    //console.log(cards);
-
+//console.log(cards);
+//console.log(deckOfCards);
         let combinedCards = [];
         let b = 0;
         let ids = [];
         cards.forEach(card => {
-            // console.log(card.id);
             if(ids.length > 5){
                 let newRelation = {"htmlCard": card.id,"cardLiteral":[]};
                 newRelation.cardLiteral.push(combinedCards[b].cardLiteral[0]);
                 //console.log(newRelation);
                 combinedCards.push(newRelation);
                 ids.push(newRelation.cardLiteral[0].id);
-                //console.log(ids);
+                console.log(ids);
                 b++;
             }else{
             let i = Math.floor(Math.random()*52);
             let newRelation = {"htmlCard": card.id,"cardLiteral":[deckOfCards[i]]};
-            let newRelation2 = {"htmlCard": card.id,"cardLiteral":[]};
+
                 while(ids.includes(newRelation.cardLiteral[0].id)){
                     let c = Math.floor(Math.random()*52);
-                    console.log(newRelation);
-                    newRelation = 0;
-                    console.log(newRelation);
+                    //console.log(newRelation);
+                    let newRelation2 = {"htmlCard": card.id,"cardLiteral":[deckOfCards[c]]};
                     //console.log(newRelation2);
-                    newRelation2.cardLiteral.push(deckOfCards[c]);
-                    console.log(newRelation2);
+                    newRelation = 0;
+                    //console.log(newRelation);
                     newRelation = newRelation2;
-                    console.log(newRelation);
-                    //combinedCards.push(newRelation);
-                    //ids.push(newRelation.cardLiteral[0].id);
+                    //console.log(newRelation);
                 }
                     combinedCards.push(newRelation);
                     ids.push(newRelation.cardLiteral[0].id);
-                    console.log(ids);
-                function checkIDS(id){
-                    if(!ids.length){
-                        return true;
-                    }else{
-                        return (id.value != deckOfCards[i].id);
-                    }
-                }
+                    //console.log(ids);
             }
         });
     //console.log(combinedCards);
@@ -266,17 +274,5 @@ function ready(){
             //     suitHTML.src = ".cards/rear_image/Heart.jpg";
             }
         });
-    
-    overlays.forEach(overlay =>{
-        overlay.addEventListener('click',() =>{
-            overlay.classList.remove('visible');
-            game.startGame();
-        });
-    });
-    cards.forEach(card =>{
-        card.addEventListener('click',()=>{
-            game.flipCard(card);
-        });
-    });
 
 }
