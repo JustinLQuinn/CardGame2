@@ -40,6 +40,113 @@ class MixOrMatch{
         this.ticker = document.getElementById('flips');
         // this.audioController = new AudioController();
     }
+    assignCards(){
+        let cards = Array.from(document.getElementsByClassName('card'));
+        let deckOfCards = [{"id":1,"value":"A","suit":"Heart","color":"red"},
+        {"id":2,"value":"2","suit":"Heart","color":"red"},
+        {"id":3,"value":"3","suit":"Heart","color":"red"},
+        {"id":4,"value":"4","suit":"Heart","color":"red"},
+        {"id":5,"value":"5","suit":"Heart","color":"red"},
+        {"id":6,"value":"6","suit":"Heart","color":"red"},
+        {"id":7,"value":"7","suit":"Heart","color":"red"},
+        {"id":8,"value":"8","suit":"Heart","color":"red"},
+        {"id":9,"value":"9","suit":"Heart","color":"red"},
+        {"id":10,"value":"10","suit":"Heart","color":"red"},
+        {"id":11,"value":"J","suit":"Heart","color":"red"},
+        {"id":12,"value":"Q","suit":"Heart","color":"red"},
+        {"id":13,"value":"K","suit":"Heart","color":"red"},
+        {"id":14,"value":"A","suit":"Club","color":"black"},
+        {"id":15,"value":"2","suit":"Club","color":"black"},
+        {"id":16,"value":"3","suit":"Club","color":"black"},
+        {"id":17,"value":"4","suit":"Club","color":"black"},
+        {"id":18,"value":"5","suit":"Club","color":"black"},
+        {"id":19,"value":"6","suit":"Club","color":"black"},
+        {"id":20,"value":"7","suit":"Club","color":"black"},
+        {"id":21,"value":"8","suit":"Club","color":"black"},
+        {"id":22,"value":"9","suit":"Club","color":"black"},
+        {"id":23,"value":"10","suit":"Club","color":"black"},
+        {"id":24,"value":"J","suit":"Club","color":"black"},
+        {"id":25,"value":"Q","suit":"Club","color":"black"},
+        {"id":26,"value":"K","suit":"Club","color":"black"},
+        {"id":27,"value":"A","suit":"Diamond","color":"red"},
+        {"id":28,"value":"2","suit":"Diamond","color":"red"},
+        {"id":29,"value":"3","suit":"Diamond","color":"red"},
+        {"id":30,"value":"4","suit":"Diamond","color":"red"},
+        {"id":31,"value":"5","suit":"Diamond","color":"red"},
+        {"id":32,"value":"6","suit":"Diamond","color":"red"},
+        {"id":33,"value":"7","suit":"Diamond","color":"red"},
+        {"id":34,"value":"8","suit":"Diamond","color":"red"},
+        {"id":35,"value":"9","suit":"Diamond","color":"red"},
+        {"id":36,"value":"10","suit":"Diamond","color":"red"},
+        {"id":37,"value":"J","suit":"Diamond","color":"red"},
+        {"id":38,"value":"Q","suit":"Diamond","color":"red"},
+        {"id":39,"value":"K","suit":"Diamond","color":"red"},
+        {"id":40,"value":"A","suit":"Spade","color":"black"},
+        {"id":41,"value":"2","suit":"Spade","color":"black"},
+        {"id":42,"value":"3","suit":"Spade","color":"black"},
+        {"id":43,"value":"4","suit":"Spade","color":"black"},
+        {"id":44,"value":"5","suit":"Spade","color":"black"},
+        {"id":45,"value":"6","suit":"Spade","color":"black"},
+        {"id":46,"value":"7","suit":"Spade","color":"black"},
+        {"id":47,"value":"8","suit":"Spade","color":"black"},
+        {"id":48,"value":"9","suit":"Spade","color":"black"},
+        {"id":49,"value":"10","suit":"Spade","color":"black"},
+        {"id":50,"value":"J","suit":"Spade","color":"black"},
+        {"id":51,"value":"Q","suit":"Spade","color":"black"},
+        {"id":52,"value":"K","suit":"Spade","color":"black"}];
+    //console.log(cards);
+    //console.log(deckOfCards);
+            let combinedCards = [];
+            let b = 0;
+            let ids = [];
+            cards.forEach(card => {
+                if(ids.length > 5){
+                    let newRelation = {"htmlCard": card.id,"cardLiteral":[]};
+                    newRelation.cardLiteral.push(combinedCards[b].cardLiteral[0]);
+                    //console.log(newRelation);
+                    combinedCards.push(newRelation);
+                    ids.push(newRelation.cardLiteral[0].id);
+                    //console.log(ids);
+                    b++;
+                }else{
+                let i = Math.floor(Math.random()*52);
+                let newRelation = {"htmlCard": card.id,"cardLiteral":[deckOfCards[i]]};
+    
+                    while(ids.includes(newRelation.cardLiteral[0].id)){
+                        let c = Math.floor(Math.random()*52);
+                        //console.log(newRelation);
+                        let newRelation2 = {"htmlCard": card.id,"cardLiteral":[deckOfCards[c]]};
+                        //console.log(newRelation2);
+                        newRelation = 0;
+                        //console.log(newRelation);
+                        newRelation = newRelation2;
+                        //console.log(newRelation);
+                    }
+                        combinedCards.push(newRelation);
+                        ids.push(newRelation.cardLiteral[0].id);
+                        //console.log(ids);
+                }
+            });
+        //console.log(combinedCards);
+            combinedCards.forEach(relation => {
+                let valueHTML = Array.from(document.getElementById(relation.htmlCard).getElementsByClassName('card-value'));
+                valueHTML.forEach(value => {value.innerText = relation.cardLiteral[0].value});
+                let suitHTML = document.getElementById(relation.htmlCard).getElementsByClassName('card-suit')[0];
+                //console.log(relation.cardLiteral[0].suit);
+                suitHTML.alt = relation.cardLiteral[0].suit;
+                if(suitHTML.alt === "Spade"){
+                //     suitHTML.src = ".cards/rear_image/Spade.jpg";
+                }else if(suitHTML.alt === "Diamond"){
+                //     suitHTML.src = ".cards/rear_image/Diamond.jpg";
+                }else if(suitHTML.alt === "Club"){
+                //     suitHTML.src = ".cards/rear_image/Club.jpg";
+                }else{
+                //     suitHTML.src = ".cards/rear_image/Heart.jpg";
+                }
+            });
+            this.startGame(); 
+    }
+
     startGame(){
         this.cardToCheck = null;
         this.totalClicks = 0;
@@ -47,6 +154,7 @@ class MixOrMatch{
         this.matchedCards = [];
         this.busy = true;
         setTimeout(() => {
+            //this.assignCards(); 
             // this.AudioController.startMusic();
             this.shuffleCards();
             this.countDown = this.startCountDown();
@@ -107,7 +215,7 @@ class MixOrMatch{
     }
 
     getCardType(card){
-        return card.getElementsByClassName('card-value')[0].innerText && card.getElementsByClassName('card-suit')[0].alt;
+        return card.getElementsByClassName('card-value')[0].innerText +","+ card.getElementsByClassName('card-suit')[0].alt;
     }
 
     startCountDown(){
@@ -123,6 +231,14 @@ class MixOrMatch{
         clearInterval(this.countDown);
         // this.audioController.gameOver();
         document.getElementById('game-over-text').classList.add('visible');
+        let cards = Array.from(document.getElementsByClassName('card'));
+        cards.forEach(card =>{
+            let cardValue = Array.from(document.getElementById(card.id).getElementsByClassName('card-value'));
+            cardValue.forEach(value => {value.innerText = ""});
+            card.getElementsByClassName('card-suit')[0].alt = "";
+        });
+        
+
     }
 
     victory(){
@@ -153,105 +269,12 @@ if(document.readyState === 'loading'){
 function ready(){
     let overlays = Array.from(document.getElementsByClassName('overlay-text'));
     let cards = Array.from(document.getElementsByClassName('card'));
-    let deckOfCards = [{"id":1,"value":"A","suit":"Heart","color":"red"},
-    {"id":2,"value":"2","suit":"Heart","color":"red"},
-    {"id":3,"value":"3","suit":"Heart","color":"red"},
-    {"id":4,"value":"4","suit":"Heart","color":"red"},
-    {"id":5,"value":"5","suit":"Heart","color":"red"},
-    {"id":6,"value":"6","suit":"Heart","color":"red"},
-    {"id":7,"value":"7","suit":"Heart","color":"red"},
-    {"id":8,"value":"8","suit":"Heart","color":"red"},
-    {"id":9,"value":"9","suit":"Heart","color":"red"},
-    {"id":10,"value":"10","suit":"Heart","color":"red"},
-    {"id":11,"value":"J","suit":"Heart","color":"red"},
-    {"id":12,"value":"Q","suit":"Heart","color":"red"},
-    {"id":13,"value":"K","suit":"Heart","color":"red"},
-    {"id":14,"value":"A","suit":"Club","color":"black"},
-    {"id":15,"value":"2","suit":"Club","color":"black"},
-    {"id":16,"value":"3","suit":"Club","color":"black"},
-    {"id":17,"value":"4","suit":"Club","color":"black"},
-    {"id":18,"value":"5","suit":"Club","color":"black"},
-    {"id":19,"value":"6","suit":"Club","color":"black"},
-    {"id":20,"value":"7","suit":"Club","color":"black"},
-    {"id":21,"value":"8","suit":"Club","color":"black"},
-    {"id":22,"value":"9","suit":"Club","color":"black"},
-    {"id":23,"value":"10","suit":"Club","color":"black"},
-    {"id":24,"value":"J","suit":"Club","color":"black"},
-    {"id":25,"value":"Q","suit":"Club","color":"black"},
-    {"id":26,"value":"K","suit":"Club","color":"black"},
-    {"id":27,"value":"A","suit":"Diamond","color":"red"},
-    {"id":28,"value":"2","suit":"Diamond","color":"red"},
-    {"id":29,"value":"3","suit":"Diamond","color":"red"},
-    {"id":30,"value":"4","suit":"Diamond","color":"red"},
-    {"id":31,"value":"5","suit":"Diamond","color":"red"},
-    {"id":32,"value":"6","suit":"Diamond","color":"red"},
-    {"id":33,"value":"7","suit":"Diamond","color":"red"},
-    {"id":34,"value":"8","suit":"Diamond","color":"red"},
-    {"id":35,"value":"9","suit":"Diamond","color":"red"},
-    {"id":36,"value":"10","suit":"Diamond","color":"red"},
-    {"id":37,"value":"J","suit":"Diamond","color":"red"},
-    {"id":38,"value":"Q","suit":"Diamond","color":"red"},
-    {"id":39,"value":"K","suit":"Diamond","color":"red"},
-    {"id":40,"value":"A","suit":"Spade","color":"black"},
-    {"id":41,"value":"2","suit":"Spade","color":"black"},
-    {"id":42,"value":"3","suit":"Spade","color":"black"},
-    {"id":43,"value":"4","suit":"Spade","color":"black"},
-    {"id":44,"value":"5","suit":"Spade","color":"black"},
-    {"id":45,"value":"6","suit":"Spade","color":"black"},
-    {"id":46,"value":"7","suit":"Spade","color":"black"},
-    {"id":47,"value":"8","suit":"Spade","color":"black"},
-    {"id":48,"value":"9","suit":"Spade","color":"black"},
-    {"id":49,"value":"10","suit":"Spade","color":"black"},
-    {"id":50,"value":"J","suit":"Spade","color":"black"},
-    {"id":51,"value":"Q","suit":"Spade","color":"black"},
-    {"id":52,"value":"K","suit":"Spade","color":"black"}];
     let game = new MixOrMatch(100, cards);
-    // console.log(cards);
-    () => {
-        let combinedCards = [];
-        cards.forEach(card => {
-            if(card.id === "card7" || card.id === "card8" || card.id === "card9" || card.id === "card10" || card.id === "card11" || card.id === "card12"){
-                let newRelatioin = {"htmlCard": card.id,"cardLiteral":[]};
-                for(b=0;b <= 5;b++){
-                    newRelatioin.cardLiteral.push(combinedCards[b].cardLiteral[0]);
-                    combinedCards.push(newRelatioin);
-                }
-            }else
-                var i = random.randint(0,51);
-                if(combinedCards.isEmpty() || combinedCards.length === 0){
-                    combinedCards.push({"htmlCard": card.id,"cardLiteral":[deckOfCards[i]]});
-                }else if(combinedCards.length>0){
-                    let newRelatioin = {"htmlCard": card.id,"cardLiteral":[deckOfCards[i]]};
-                    for(j=0;j<combinedCards.length;j++){
-                        if(combinedCards[j].htmlCard === newRelatioin.htmlCard && combinedCards[j].cardLiteral[0].id === newRelatioin.cardLiteral[0].id){
-                            continue;
-                        }else
-                            combinedCards.push(newRelatioin);
-                        }
-                }
-        });
-        console.log(combinedCards);
-        combinedCards.forEach(relation => {
-            let valueHTML = document.getElementById(relation.htmlCard).getElementsByClassName('card-value');
-            valueHTML.forEach(value => {value.innerText = relation.cardLiteral[0].value});
-            let suitHTML = document.getElementById(relation.htmlCard).getElementsByClassName('card-suit')[0];
-            suitHTML.alt = relation.cardLiteral[0].suit;
-            if(suitHTML.alt === "Spade"){
-            //     suitHTML.src = ".cards/rear_image/Spade.jpg";
-            }else if(suitHTML.alt === "Diamond"){
-            //     suitHTML.src = ".cards/rear_image/Diamond.jpg";
-            }else if(suitHTML.alt === "Club"){
-            //     suitHTML.src = ".cards/rear_image/Club.jpg";
-            }else{
-            //     suitHTML.src = ".cards/rear_image/Heart.jpg";
-            }
-        });
-    }
-
+    
     overlays.forEach(overlay =>{
         overlay.addEventListener('click',() =>{
             overlay.classList.remove('visible');
-            game.startGame();
+            game.assignCards();
         });
     });
     cards.forEach(card =>{
