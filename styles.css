@@ -114,8 +114,10 @@ right: -2em;
     right: -2em;
 }
 
-.suit{
+.card-suit{
     align-self: center;
+    width: 60px;
+    height: 60px;
 }
 
 .overlay-text{
