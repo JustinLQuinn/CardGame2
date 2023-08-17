@@ -135,13 +135,13 @@ class MixOrMatch{
                 //console.log(relation.cardLiteral[0].suit);
                 suitHTML.alt = relation.cardLiteral[0].suit;
                 if(suitHTML.alt === "Spade"){
-                //     suitHTML.src = ".cards/rear_image/Spade.jpg";
+                     suitHTML.src = "cards/suit_image/SpadeFancy.png";
                 }else if(suitHTML.alt === "Diamond"){
-                //     suitHTML.src = ".cards/rear_image/Diamond.jpg";
+                     suitHTML.src = "cards/suit_image/DiamondFancy.png";
                 }else if(suitHTML.alt === "Club"){
-                //     suitHTML.src = ".cards/rear_image/Club.jpg";
+                     suitHTML.src = "cards/suit_image/ClubFancy.png";
                 }else{
-                //     suitHTML.src = ".cards/rear_image/Heart.jpg";
+                     suitHTML.src = "cards/suit_image/HeartFancy.png";
                 }
             });
             this.startGame(); 
@@ -153,8 +153,7 @@ class MixOrMatch{
         this.timeRemaining = this.totalTime;
         this.matchedCards = [];
         this.busy = true;
-        setTimeout(() => {
-            //this.assignCards(); 
+        setTimeout(() => { 
             // this.AudioController.startMusic();
             this.shuffleCards();
             this.countDown = this.startCountDown();
@@ -237,8 +236,6 @@ class MixOrMatch{
             cardValue.forEach(value => {value.innerText = ""});
             card.getElementsByClassName('card-suit')[0].alt = "";
         });
-        
-
     }
 
     victory(){
