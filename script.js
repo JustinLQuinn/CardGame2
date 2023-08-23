@@ -135,13 +135,13 @@ class MixOrMatch{
                 //console.log(relation.cardLiteral[0].suit);
                 suitHTML.alt = relation.cardLiteral[0].suit;
                 if(suitHTML.alt === "Spade"){
-                     suitHTML.src = "cards/suit_image/SpadeFancy.png";
+                     suitHTML.src = "cards/suit_image/fancy/SpadeFancy.png";
                 }else if(suitHTML.alt === "Diamond"){
-                     suitHTML.src = "cards/suit_image/DiamondFancy.png";
+                     suitHTML.src = "cards/suit_image/fancy/DiamondFancy.png";
                 }else if(suitHTML.alt === "Club"){
-                     suitHTML.src = "cards/suit_image/ClubFancy.png";
+                     suitHTML.src = "cards/suit_image/fancy/ClubFancy.png";
                 }else{
-                     suitHTML.src = "cards/suit_image/HeartFancy.png";
+                     suitHTML.src = "cards/suit_image/fancy/HeartFancy.png";
                 }
             });
             this.startGame(); 
