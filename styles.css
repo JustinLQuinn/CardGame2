@@ -178,7 +178,7 @@ font-size: .3em;
 
 @media(max-width: 600px){
     .game-container{
-        grid-template-columns: repeat(2,auto);
+        grid-template-columns: repeat(3,auto);
     }
     .game-info-container{
         flex-direction: column;
