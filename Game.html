@@ -3,22 +3,47 @@
 <head>
     <link href="styles.css" rel="stylesheet">
     <script src="script.js" async></script>
-    <title>Match-Game</title>
+    <title>Find Me</title>
     <meta name="Note" content="scource code came from WebDevSimlified / Mix-Or-Match">
 </head>    
 <body>
-    <h1 class="page-title">Match-Game</h1>
-    <div class="overlay-text visible">
-        Click to Start
-    </div>
-    <div id="game-over-text" class="overlay-text">
-        GAME OVER
-        <span class="overlay-text-small">Click to Restart</span>
-    </div> 
-    <div id="victory-text" class="overlay-text">
-        VICTORY
-        <span class="overlay-text-small">Click to Restart</span>
-    </div> 
+    <nav class="nav-bar">
+        <div id="setting">Settings</div>
+        <h1 class="page-title">Find Me</h1>
+    </nav>
+        <div class="overlay-text visible">
+            Click to Start
+        </div>     
+        <div id="game-over-text" class="overlay-text">
+            GAME OVER
+            <span class="overlay-text-small">Click to Restart</span>
+        </div> 
+        <div id="victory-text" class="overlay-text">
+            VICTORY
+            <span class="overlay-text-small">Click to Restart</span>
+        </div>
+        <div id="settings-form" class="overlay-text">
+            <div class="form-container">
+                <form>
+                    <label>Card Suit:</label><br>
+                    <input type="radio" id="fancy" name="card-suit" value="FANCY">
+                    <label for="fancy">FANCY</label><br>
+                    <input type="radio" id="bubble" name="card-suit" value="BUBBLE">
+                    <label for="bubble">BUBBLE</label><br>
+                    <input type="radio" id="sparkle" name="card-suit" value="SPARKLE">
+                    <label for="sparkle">SPARKLE</label><br> 
+                    
+                    <label>Card Picture:</label><br>
+                    <input type="radio" id="web" name="card-picture" value="WEB">
+                    <label for="web">Web</label><br>
+                    <input type="radio" id="hallway" name="card-picture" value="HALLWAY">
+                    <label for="hallway">HALLWAY</label><br>
+                    <br>
+                    <button id="saveSettings">Save</button><br>
+                </form>
+            </div>
+        </div>
+        
     <div class="game-container">
         <div class="game-info-container">
             <div class="game-info">
