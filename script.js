@@ -304,44 +304,44 @@ function ready(){
 }
 
 function webPic(){
-    let pictures = Array.from(document.getElementsByClassName('back-image'));
+    var pictures = Array.from(document.getElementsByClassName('back-image'));
     pictures.forEach(pic =>{
         pic.src = "cards/rear_image/image001.jpg";
     });
 }
 
 function hallwayPic(){
-    let pictures = Array.from(document.getElementsByClassName('back-image'));
+    var pictures = Array.from(document.getElementsByClassName('back-image'));
     pictures.forEach(pic =>{
         pic.src = "cards/rear_image/image002.jpg";
     });
 }
 
 function addFancy(){
-let images = Array.from(document.getElementsByClassName('card-suit'));
-images.forEach(image =>{
-    image.classList.remove('bubble');
-    image.classList.remove('sparkle');
-    image.classList.add('fancy');
-});
+    var images = Array.from(document.getElementsByClassName('card-suit'));
+    images.forEach(image =>{
+        image.classList.remove('bubble');
+        image.classList.remove('sparkle');
+        image.classList.add('fancy');
+    });
 }
 
 function addBubble(){
-    let images = Array.from(document.getElementsByClassName('card-suit'));
+    var images = Array.from(document.getElementsByClassName('card-suit'));
     images.forEach(image =>{
         image.classList.remove('fancy');
         image.classList.remove('sparkle');    
         image.classList.add('bubble');    
-});
+    });
 }
 
 function addSparkle(){
-    let images = Array.from(document.getElementsByClassName('card-suit'));
+    var images = Array.from(document.getElementsByClassName('card-suit'));
     images.forEach(image =>{
         image.classList.remove('bubble');
         image.classList.remove('fancy');
         image.classList.add('sparkle');    
-});
+    });
 }
 
 function openForm(){
