@@ -134,16 +134,37 @@ class CardGame{
                 let suitHTML = document.getElementById(relation.htmlCard).getElementsByClassName('card-suit')[0];
                 //console.log(relation.cardLiteral[0].suit);
                 suitHTML.alt = relation.cardLiteral[0].suit;
-                if(suitHTML.alt === "Spade"){
-                     suitHTML.src = "cards/suit_image/fancy/SpadeFancy.png";
-                }else if(suitHTML.alt === "Diamond"){
-                     suitHTML.src = "cards/suit_image/fancy/DiamondFancy.png";
-                }else if(suitHTML.alt === "Club"){
-                     suitHTML.src = "cards/suit_image/fancy/ClubFancy.png";
-                }else{
-                     suitHTML.src = "cards/suit_image/fancy/HeartFancy.png";
-                }
             });
+
+            var suitsHTML = Array.from(document.getElementsByClassName('card-suit'));
+            suitsHTML.forEach(suit =>{
+                if(suit.alt === "Spade" && suit.classList.contains("fancy")){
+                    suit.src = "cards/suit_image/fancy/SpadeFancy.png";
+               }else if(suit.alt === "Diamond" && suit.classList.contains("fancy")){
+                    suit.src = "cards/suit_image/fancy/DiamondFancy.png";
+               }else if(suit.alt === "Club" && suit.classList.contains("fancy")){
+                    suit.src = "cards/suit_image/fancy/ClubFancy.png";
+               }else if(suit.alt === "Heart" && suit.classList.contains("fancy")){
+                    suit.src = "cards/suit_image/fancy/HeartFancy.png";
+               }else if(suit.alt === "Spade" && suit.classList.contains("bubble")){
+                    suit.src = "cards/suit_image/bubble/SpadeBubble.png";
+               }else if(suit.alt === "Diamond" && suit.classList.contains("bubble")){
+                    suit.src = "cards/suit_image/bubble/DiamondBubble.png";
+               }else if(suit.alt === "Club" && suit.classList.contains("bubble")){
+                    suit.src = "cards/suit_image/bubble/ClubBubble.png";
+               }else if(suit.alt === "Heart" && suit.classList.contains("bubble")){
+                    suit.src = "cards/suit_image/bubble/HeartBubble.png";
+               }else if(suit.alt === "Spade" && suit.classList.contains("sparkle")){
+                    suit.src = "cards/suit_image/sparkle/SpadeSparkle.png";
+               }else if(suit.alt === "Diamond" && suit.classList.contains("sparkle")){
+                    suit.src = "cards/suit_image/sparkle/DiamondSparkle.png";
+               }else if(suit.alt === "Club" && suit.classList.contains("sparkle")){
+                    suit.src = "cards/suit_image/sparkle/ClubSparkle.png";
+               }else{
+                    suit.src = "cards/suit_image/sparkle/HeartSparkle.png";
+               } 
+            });
+            
             this.startGame(); 
     }
 
@@ -280,4 +301,50 @@ function ready(){
         });
     });
 
+}
+
+function webPic(){
+    let pictures = Array.from(document.getElementsByClassName('back-image'));
+    pictures.forEach(pic =>{
+        pic.src = "cards/rear_image/image001.jpg";
+    });
+}
+
+function hallwayPic(){
+    let pictures = Array.from(document.getElementsByClassName('back-image'));
+    pictures.forEach(pic =>{
+        pic.src = "cards/rear_image/image002.jpg";
+    });
+}
+
+function addFancy(){
+let images = Array.from(document.getElementsByClassName('card-suit'));
+images.forEach(image =>{
+    image.classList.remove('bubble');
+    image.classList.remove('sparkle');
+    image.classList.add('fancy');
+});
+}
+
+function addBubble(){
+    let images = Array.from(document.getElementsByClassName('card-suit'));
+    images.forEach(image =>{
+        image.classList.remove('fancy');
+        image.classList.remove('sparkle');    
+        image.classList.add('bubble');    
+});
+}
+
+function addSparkle(){
+    let images = Array.from(document.getElementsByClassName('card-suit'));
+    images.forEach(image =>{
+        image.classList.remove('bubble');
+        image.classList.remove('fancy');
+        image.classList.add('sparkle');    
+});
+}
+
+function openForm(){
+    var form = document.getElementById('settings-form');
+    form.classList.add('visible');
 }

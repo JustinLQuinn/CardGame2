@@ -8,7 +8,7 @@
 </head>    
 <body>
     <nav class="nav-bar">
-        <div id="setting">Settings</div>
+        <button id="setting" onclick="openForm()">Settings</button>
         <h1 class="page-title">Find Me</h1>
     </nav>
         <div class="overlay-text visible">
@@ -22,24 +22,18 @@
             VICTORY
             <span class="overlay-text-small">Click to Restart</span>
         </div>
-        <div id="settings-form" class="overlay-text">
+        <div id="settings-form" class="overlay-form">
             <div class="form-container">
                 <form>
                     <label>Card Suit:</label><br>
-                    <input type="radio" id="fancy" name="card-suit" value="FANCY">
-                    <label for="fancy">FANCY</label><br>
-                    <input type="radio" id="bubble" name="card-suit" value="BUBBLE">
-                    <label for="bubble">BUBBLE</label><br>
-                    <input type="radio" id="sparkle" name="card-suit" value="SPARKLE">
-                    <label for="sparkle">SPARKLE</label><br> 
-                    
-                    <label>Card Picture:</label><br>
-                    <input type="radio" id="web" name="card-picture" value="WEB">
-                    <label for="web">Web</label><br>
-                    <input type="radio" id="hallway" name="card-picture" value="HALLWAY">
-                    <label for="hallway">HALLWAY</label><br>
+                    <input type="button" value="FANCY" onclick="addFancy()">
+                    <input type="button" value="BUBBLE" onclick="addBubble()">
+                    <input type="button" value="SPARKLE" onclick="addSparkle()">
                     <br>
-                    <button id="saveSettings">Save</button><br>
+                    <label>Card Picture:</label><br>
+                    <input type="button" value="WEB" onclick="webPic()">
+                    <input type="button" value="HALLWAY" onclick="hallwayPic()">
+
                 </form>
             </div>
         </div>
