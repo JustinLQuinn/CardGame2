@@ -109,11 +109,11 @@ class CardGame{
                     //console.log(ids);
                     b++;
                 }else{
-                let i = Math.floor(Math.random()*52);
+                    let i = (Math.floor(Math.random()*52))-1;
                 let newRelation = {"htmlCard": card.id,"cardLiteral":[deckOfCards[i]]};
     
                     while(ids.includes(newRelation.cardLiteral[0].id)){
-                        let c = Math.floor(Math.random()*52);
+                        let c = (Math.floor(Math.random()*52))-1;
                         //console.log(newRelation);
                         let newRelation2 = {"htmlCard": card.id,"cardLiteral":[deckOfCards[c]]};
                         //console.log(newRelation2);
